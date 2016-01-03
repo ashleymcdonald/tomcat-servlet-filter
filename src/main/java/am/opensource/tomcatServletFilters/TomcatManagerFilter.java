@@ -11,8 +11,12 @@ public class TomcatManagerFilter implements javax.servlet.Filter {
 			         ServletResponse response,
 				 FilterChain chain)
 		throws IOException, ServletException {
-		if ( ! ( request.toString().startsWith("manager") || request.toString().equals("lbAccessStatus") ) ) {
-		    chain.doFilter(request, response);
+        if (!(
+                request.toString().startsWith("manager") ||
+                        request.toString().equals("lbAccessStatus") ||
+                        request.toString().contains("server-status")
+        )) {
+            chain.doFilter(request, response);
 		    return;
 		}
 	}
